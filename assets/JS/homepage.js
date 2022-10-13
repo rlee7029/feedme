@@ -13,7 +13,7 @@ var alertSpanFoodName2 = document.getElementsByClassName("close")[2];
 function formSubmitHandler(event) {
     event.preventDefault();
     var foodName = userInputEL.value;
-    console.log(foodName);
+    localStorage.setItem("input", foodName);
 
     if (!foodName) {
        alertModal.style.display = "block";
