@@ -31,7 +31,7 @@ function getFoodInfo(foodName) {
             if (response.ok) {
                 response.json().then(function (data) {
                     console.log(data);
-                    displayFoodInfo(data);
+                    window.location.assign("");
                 });
             }
             else {
