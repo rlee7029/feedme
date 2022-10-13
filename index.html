@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,15 +16,47 @@
 <body>
     <div>
         <h3>Search for a recipe</h3>
-        <input type="text" placeholder="Search here">
-        <button type="submit">submit</button>
+        <form id="form">
+            <input type="text" placeholder="Search here" id="searchBar">
+            <button type="submit" id="searchBtn">Search</button>
+        </form>   
     </div>
+    
     <div>
         <h2>Recipe Results</h2>
     </div>
+    
     <div>
         <h2>Saved Recipes</h2>
     </div>
+    
+    <div>
+        <div class="alerts">
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Please enter a valid food name in the search bar!</p>
+                </div>
+            </div>
+            
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Request Error</p>
+                </div>
+            </div>
+            
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Cannot connect to Edamam. Please try again.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    
+    <script src="./assets/JS/javascript.js"></script>
 </body>
-<script src="./assets/JS/javascript.js"></script>
+
 </html>
