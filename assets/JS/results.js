@@ -15,7 +15,7 @@ function getFoodName() {
         .then (function (response) {
             if (response.ok) {
                 console.log(data);
-                displayFoodInfor(data);
+                displayFoodInfo(data);
             }
             else {
                 alertModalFoodName1.style.display = "block";
@@ -24,6 +24,10 @@ function getFoodName() {
         .catch (function (error) {
             alertModalFoodName2.style.display = "block";
         });
+}
+
+function displayFoodInfo(data) {
+    
 }
 
 
