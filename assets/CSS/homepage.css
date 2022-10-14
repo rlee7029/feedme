@@ -1,15 +1,4 @@
-@charset "UTF-8";
-/**
- * Foundation for Sites
- * Version 6.7.5
- * https://get.foundation
- * Licensed under MIT Open Source
- */
-@media print, screen and (min-width: 40em) {
-  .reveal, .reveal.tiny, .reveal.small, .reveal.large {
-    right: auto;
-    left: auto;
-    margin: 0 auto; } }
+
 
 .modal {
     display: none;
@@ -44,8 +33,24 @@
     text-decoration: none;
     cursor: pointer;
   }
-
-p {
-  font-size: 3.5rem;
+ 
+.header{
+  background-color: rgb(85, 229, 85);
 }
+  .grid-container{
+    background-color: rgb(88, 233, 88);
+    margin-top: 300px;
+  }
 
+  .search{
+    margin-top: 50px;
+  }
+
+  .reciperesults{
+    margin-top: 50px;
+  }
+
+  .savedrecipes{
+    margin-top: 50px;
+    text-decoration: underline;
+  }
