@@ -9,7 +9,8 @@ var alertModalFoodName1 = document.getElementsByClassName("modal")[1];
 var alertSpanFoodName1 = document.getElementsByClassName("close")[1];
 var alertModalFoodName2 = document.getElementsByClassName("modal")[2];
 var alertSpanFoodName2 = document.getElementsByClassName("close")[2];
-var resultsEl = document.getElementById("resultsContainer");
+var resultsEl = document.getElementById("resultsField");
+var resultsForm = document.getElementById("resultsForm")
 
 function getFoodName() {
     var foodName = localStorage.getItem("name");
@@ -106,9 +107,13 @@ function displayFoodInfo(data) {
         var fat = data.hints[i].food.nutrients.FAT;
         var img_URL = data.hints[i].food.image;
 
-        var cardEl = document.createElement("card");
+        var cardEl = document.createElement("div");
         var cardTitle = document.createElement("h2");
         cardTitle.textContent = name;
+        var checkbox = document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute("name", "Ingredient Name");
+        checkbox.setAttribute("value", name + " " + calories + " " + fat);
         var cardContent1 = document.createElement("h3");
         cardContent1.textContent = "Calories: " + calories + "kcal";
         var cardContent2 = document.createElement("h3");
@@ -119,9 +124,17 @@ function displayFoodInfo(data) {
         resultsEl.appendChild(cardEl);
         cardEl.appendChild(imgEl);
         cardEl.appendChild(cardTitle);
+        cardEl.appendChild(checkbox);
         cardEl.appendChild(cardContent1);
         cardEl.appendChild(cardContent2);
     }
+    var saveDiv = document.createElement("div");
+    var saveBtn = document.createElement("button");
+    saveBtn.setAttribute("type", "submit");
+    saveBtn.textContent = "Save";
+    
+    saveDiv.appendChild(saveBtn);
+    resultsEl.appendChild(saveDiv);
 }
 
 function displayRecipeInfo(data) {
@@ -159,6 +172,11 @@ function displayRecipeInfo(data) {
     }
 }
 
+function saveFoodInfo(event) {
+    event.preventDefault();
+    console.log("123");
+}
+
 alertSpan1.onclick = function() {
     alertModal1.style.display = "none";
 }
@@ -192,4 +210,6 @@ window.onclick = function(event) {
         alertModalFoodName2.style.display = "none";
     }
 }
+
 window.addEventListener("load", getFoodName);
+resultsForm.addEventListener("submit", saveFoodInfo);
