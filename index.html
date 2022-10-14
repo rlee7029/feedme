@@ -25,26 +25,31 @@
         </div>
 
     <div>
-        <div class="grid-x grid-padding-x">
-        <div class="large-12 cell">
-        <h3>Search for a recipe</h3>
-        <form id="form">
-            <input type="text" placeholder="Search here" id="searchBar">
-             <div class="large-4 medium-4 cell">
-                <p><a href="" class="button secondary expanded">Search</a><br/>
+        <h2>Search Recipes by Ingredients</h2>
+        <form id="form1">
+            <label for="searchIngredient">Search by Ingredient:</label>
+            <input type="text" placeholder="Search here" id="searchIngredient">
+            
+            <label for="minKCAL1">Minimum Calories:</label>
+            <input type="text" placeholder="Minimum" id="minKCAL1" name="minKCAL1">
+            
+            <label for="maxKCAL1">Maximum Calories:</label>
+            <input type="text" placeholder="Maximum" id="maxKCAL1" name="maxKCAL1">
+            
+            <button type="submit" id="searchBtn1">Search</button>
+        </form>   
+    </div>
+
+    <div>
+        <h2>Search Recipes by Name</h2>
+        <form id="form2">
+            <label for="searchRecipe">Search by Recipe Name:</label>
+            <input type="text" placeholder="Search here" id="searchRecipe">
+            
+            <button type="submit" id="searchBtn2">Search</button>
         </form>   
     </div>
     
-    <div class="grid-x grid-padding-x">
-        <div class="large-12 cell">
-            <h2>Recipe Results</h2>
-          </div>
-        </div>
-        <div class="large-12 cell">
-            <h2>Saved Reipes</h2>
-          </div>
-        </div>
-      </div>
     <div>
         <div class="alerts">
             <div class="modal">
@@ -64,14 +69,20 @@
             <div class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p>Cannot connect to Edamam. Please try again.</p>
+                    <p>Connection Error. Please try again.</p>
+                </div>
+            </div>
+
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Please enter a valid recipe name in the search bar!</p>
                 </div>
             </div>
         </div>
     </div>
-   
-    
-    <script src="./assets/JS/javascript.js"></script>
+       
+    <script src="./assets/JS/homepage.js"></script>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
