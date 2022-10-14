@@ -146,6 +146,11 @@ function displayRecipeInfo(data) {
         
         var cardEl = document.createElement("div");
         var cardTitle = document.createElement("h2");
+        var checkbox = document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.classList = "checkBoxRecipe";
+        checkbox.setAttribute("name", "Recipe Name");
+        checkbox.setAttribute("value", name);
         var cardContent1 = document.createElement("h3");
         var imgEl = document.createElement("img");
         imgEl.setAttribute("src", img_URL);
@@ -157,6 +162,7 @@ function displayRecipeInfo(data) {
         cardEl.appendChild(imgEl);
         cardEl.appendChild(cardTitle);
         cardEl.appendChild(cardContent1);
+        cardEl.appendChild(checkbox);
 
         //(for (var j = 1; j < 20; j++) {
             //var ingredientStr = "strIngredient" + j;
@@ -183,7 +189,8 @@ function displayRecipeInfo(data) {
 function saveFoodInfo(event) {
     event.preventDefault();
     var checkBox = document.getElementsByClassName("checkBox");
-    
+    var checkBoxRecipe = document.getElementsByClassName("checkBoxRecipe");
+
     for (i = 0; i < checkBox.length; i++) {
         if (checkBox[i].checked == true) {
             var foodInfo = checkBox[i].value;
@@ -197,6 +204,14 @@ function saveFoodInfo(event) {
             localStorage.setItem("name" + i, name);
             localStorage.setItem("calories" + i, calories);
             localStorage.setItem("fat" + i, fat);
+        }       
+    }
+
+    for (i = 0; i < checkBoxRecipe.length; i++) {
+        if (checkBoxRecipe[i].checked == true) {
+            var recipeInfo = checkBoxRecipe[i].value;
+
+            localStorage.setItem("recipeName" + i, recipeInfo);
         }       
     }
 
@@ -224,6 +239,19 @@ function displaySavedFood() {
             cardContainer.appendChild(cardContent2);
         }
     }    
+
+    for (i = 0; i < 30; i++) {
+        if (localStorage.getItem("recipeName" + i)) {
+            var name = localStorage.getItem("recipeName" + i);
+
+            var cardContainer = document.createElement("div");
+            var cardTitle = document.createElement("h2");
+            cardTitle.textContent = name;
+
+            savedEl.appendChild(cardContainer);
+            cardContainer.appendChild(cardTitle);
+        }
+    }  
 }
 
 alertSpan1.onclick = function() {
