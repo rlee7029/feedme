@@ -131,10 +131,14 @@ function displayFoodInfo(data) {
     }
     var saveDiv = document.createElement("div");
     var saveBtn = document.createElement("button");
+    var deleteBtn = document.createElement("button");
     saveBtn.setAttribute("type", "submit");
     saveBtn.textContent = "Save";
+    deleteBtn.setAttribute("type", "submit");
+    deleteBtn.textContent = "Delete";
     
     saveDiv.appendChild(saveBtn);
+    saveDiv.appendChild(deleteBtn);
     resultsEl.appendChild(saveDiv);
 }
 
@@ -179,10 +183,15 @@ function displayRecipeInfo(data) {
     }
     var saveDiv = document.createElement("div");
     var saveBtn = document.createElement("button");
+    var deleteBtn = document.createElement("button");
+
     saveBtn.setAttribute("type", "submit");
     saveBtn.textContent = "Save";
+    deleteBtn.setAttribute("type", "submit");
+    deleteBtn.textContent = "Delete";
     
     saveDiv.appendChild(saveBtn);
+    saveDiv.appendChild(deleteBtn);
     resultsEl.appendChild(saveDiv);
 }
 
