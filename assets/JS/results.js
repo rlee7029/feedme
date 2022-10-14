@@ -112,6 +112,7 @@ function displayFoodInfo(data) {
         cardTitle.textContent = name;
         var checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
+        checkbox.classList = "checkBox";
         checkbox.setAttribute("name", "Ingredient Name");
         checkbox.setAttribute("value", name + " " + calories + " " + fat);
         var cardContent1 = document.createElement("h3");
@@ -174,7 +175,23 @@ function displayRecipeInfo(data) {
 
 function saveFoodInfo(event) {
     event.preventDefault();
-    console.log("123");
+    var checkBox = document.getElementsByClassName("checkBox");
+    
+    for (i = 0; i < checkBox.length; i++) {
+        if (checkBox[i].checked == true) {
+            var foodInfo = checkBox[i].value;
+            
+            var infoArr = foodInfo.split(" ");
+            
+            var name = infoArr[0];
+            var calories = infoArr[1];
+            var fat = infoArr[2];
+
+            localStorage.setItem("name" + i, name);
+            localStorage.setItem("calories" + i, calories);
+            localStorage.setItem("fat" + i, fat);
+        }       
+    }
 }
 
 alertSpan1.onclick = function() {
