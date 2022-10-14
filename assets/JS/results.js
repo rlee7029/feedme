@@ -1,6 +1,5 @@
 var app_ID = "a4759254";
 var app_Key1 = "8b51efe3abe8a26556f2211b458b449e";
-var app_Key2 = "182fd941e8cf074168de29cfe53a2bb6927abab6"
 var alertModal1 = document.getElementsByClassName("modal")[0];
 var alertSpan1 = document.getElementsByClassName("close")[0];
 var alertModal2 = document.getElementsByClassName("modal")[3];
@@ -10,7 +9,8 @@ var alertSpanFoodName1 = document.getElementsByClassName("close")[1];
 var alertModalFoodName2 = document.getElementsByClassName("modal")[2];
 var alertSpanFoodName2 = document.getElementsByClassName("close")[2];
 var resultsEl = document.getElementById("resultsField");
-var resultsForm = document.getElementById("resultsForm")
+var resultsForm = document.getElementById("resultsForm");
+var savedEl = document.getElementById("savedContainer");
 
 function getFoodName() {
     var foodName = localStorage.getItem("name");
@@ -114,7 +114,7 @@ function displayFoodInfo(data) {
         checkbox.setAttribute("type", "checkbox");
         checkbox.classList = "checkBox";
         checkbox.setAttribute("name", "Ingredient Name");
-        checkbox.setAttribute("value", name + " " + calories + " " + fat);
+        checkbox.setAttribute("value", name + "+" + calories + "+" + fat);
         var cardContent1 = document.createElement("h3");
         cardContent1.textContent = "Calories: " + calories + "kcal";
         var cardContent2 = document.createElement("h3");
@@ -181,7 +181,7 @@ function saveFoodInfo(event) {
         if (checkBox[i].checked == true) {
             var foodInfo = checkBox[i].value;
             
-            var infoArr = foodInfo.split(" ");
+            var infoArr = foodInfo.split("+");
             
             var name = infoArr[0];
             var calories = infoArr[1];
@@ -192,6 +192,31 @@ function saveFoodInfo(event) {
             localStorage.setItem("fat" + i, fat);
         }       
     }
+
+    displaySavedFood();
+}
+
+function displaySavedFood() {
+    for (i = 0; i < 30; i++) {
+        if (localStorage.getItem("name" + i)) {
+            var name = localStorage.getItem("name" + i);
+            var calories = localStorage.getItem("calories" + i);
+            var fat = localStorage.getItem("fat" + i);
+
+            var cardContainer = document.createElement("div");
+            var cardTitle = document.createElement("h2");
+            cardTitle.textContent = name;
+            var cardContent1 = document.createElement("h3");
+            cardContent1.textContent = calories + " Kcal";
+            var cardContent2 = document.createElement("h3");
+            cardContent2.textContent = fat + " g";
+
+            savedEl.appendChild(cardContainer);
+            cardContainer.appendChild(cardTitle);
+            cardContainer.appendChild(cardContent1);
+            cardContainer.appendChild(cardContent2);
+        }
+    }    
 }
 
 alertSpan1.onclick = function() {
