@@ -21,30 +21,39 @@
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
         </div>
-    <div>
+        <div>
+            <h2 class="text-center">Search Recipes by Name</h2>
+            <form id="form2">
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <h3 for="searchRecipe">Search by Recipe Name:</h3>
+                      <input type="text" placeholder="Search here" id="searchRecipe">
+                    </div>
+                <button type="submit" id="searchBtn2"  class="button large secondary expanded" >Search</button>
+            </form>   
+        </div>
+
+    <div class='boxbar'>
         <h2 class="text-center">Search Recipes by Ingredients</h2>
         <form id="form1">
-            <h3 for="searchIngredient">Search by Ingredient:</h3>
-            <input type="text" placeholder="Search here" id="searchIngredient">
-            
-            <h3 for="minKCAL1">Minimum Calories:</h3>
-            <input type="text" placeholder="Minimum" id="minKCAL1" name="minKCAL1">
-            
-            <h3 for="maxKCAL1">Maximum Calories:</h3>
-            <input type="text" placeholder="Maximum" id="maxKCAL1" name="maxKCAL1">
-            
+    
+              <div class="grid-x grid-padding-x">
+                <div class="large-4 medium-4 cell">
+                  <h3 for="searchIngredient">Search by Ingredient:</h3>
+              <input type="text" placeholder="Search here" id="searchIngredient">
+                </div>
+                <div class="large-4 medium-4 cell">
+                  <h3 for="minKCAL1">Minimum Calories:</h3>
+              <input type="text" placeholder="Minimum" id="minKCAL1" name="minKCAL1">
+              
+                </div>
+                <div class="large-4 medium-4 cell">
+                  <h3 for="maxKCAL1">Maximum Calories:</h3>
+              <input type="text" placeholder="Maximum" id="maxKCAL1" name="maxKCAL1">
             <button type="submit" id="searchBtn1" class="button large secondary expanded">Search</button>
         </form>   
     </div>
 
-    <div>
-        <h2>Search Recipes by Name</h2>
-        <form id="form2">
-            <h3 for="searchRecipe">Search by Recipe Name:</h3>
-            <input type="text" placeholder="Search here" id="searchRecipe">
-            <button type="submit" id="searchBtn2"  class="button large secondary expanded" >Search</button>
-        </form>   
-    </div>
     
     <div>
         <div class="alerts">

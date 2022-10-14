@@ -46,6 +46,10 @@ background-color: aquamarine;
     background-color: rgb(88, 233, 88);
     margin-top: 100px;
   }
+  
+  .boxbar{
+    margin-top: 80px;
+  }
 
   .search{
     margin-top: 50px;
