@@ -11,6 +11,11 @@
     left: auto;
     margin: 0 auto; } }
 
+body {
+background-image: url(./istockphoto-636845328-612x612.jpeg);
+background-color: aquamarine;
+}
+
 .modal {
     display: none;
     position: fixed; 
