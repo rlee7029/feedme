@@ -1,7 +1,10 @@
 var app_ID = "a4759254";
-var app_Key = "8b51efe3abe8a26556f2211b458b449e";
-var alertModal = document.getElementsByClassName("modal")[0];
-var alertSpan = document.getElementsByClassName("close")[0];
+var app_Key1 = "8b51efe3abe8a26556f2211b458b449e";
+var app_Key2 = "182fd941e8cf074168de29cfe53a2bb6927abab6"
+var alertModal1 = document.getElementsByClassName("modal")[0];
+var alertSpan1 = document.getElementsByClassName("close")[0];
+var alertModal2 = document.getElementsByClassName("modal")[3];
+var alertSpan2 = document.getElementsByClassName("close")[3];
 var alertModalFoodName1 = document.getElementsByClassName("modal")[1];
 var alertSpanFoodName1 = document.getElementsByClassName("close")[1];
 var alertModalFoodName2 = document.getElementsByClassName("modal")[2];
@@ -9,9 +12,50 @@ var alertSpanFoodName2 = document.getElementsByClassName("close")[2];
 var resultsEl = document.getElementById("resultsContainer");
 
 function getFoodName() {
-    var foodName = localStorage.getItem("input");
-    console.log(foodName);
-    var app_URL = "https://api.edamam.com/api/food-database/v2/parser?app_id=" + app_ID + "&app_key=" + app_Key + "&ingr=" + foodName;
+    var foodName = localStorage.getItem("name");
+
+    if (localStorage.minKCAL && localStorage.maxKCAL && foodName) {
+        var minKCAL = localStorage.getItem("minKCAL");
+        var maxKCAL = localStorage.getItem("maxKCAL");
+        getFoodInfoMinMax(foodName, minKCAL, maxKCAL);
+    }
+    
+    if (foodName) {
+        console.log(foodName);
+        getFoodInfo(foodName);
+    }
+    
+    if (localStorage.recipeName) {
+        var recipeName = localStorage.getItem("recipeName");
+        getRecipeInfo(recipeName);
+    }    
+}
+
+function getRecipeInfo(recipeName) {
+    var app_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + recipeName;
+   
+    fetch (app_URL) 
+    .then (function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+                displayRecipeInfo(data);
+            });
+        }
+        else {
+            alertModalFoodName1.style.display = "block";
+        }
+    })
+    .catch (function (error) {
+        alertModalFoodName2.style.display = "block";
+    });
+    
+    localStorage.removeItem("recipeName");
+}
+
+function getFoodInfo(foodName) {
+    var app_URL = "https://api.edamam.com/api/food-database/v2/parser?app_id=" + app_ID + "&app_key=" + app_Key1 + "&ingr=" + foodName;
+        
     fetch (app_URL)
         .then (function (response) {
             if (response.ok) {
@@ -27,32 +71,32 @@ function getFoodName() {
         .catch (function (error) {
             alertModalFoodName2.style.display = "block";
         });
+
+    localStorage.removeItem("name");
 }
 
-alertSpan.onclick = function() {
-    alertModal.style.display = "none";
-}
-
-alertSpanFoodName1.onclick = function() {
-    alertModalFoodName1.style.display = "none";
-}
-
-alertSpanFoodName2.onclick = function() {
-    alertModalFoodName2.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == alertModal) {
-        alertModal.style.display = "none";
-    }
-
-    if (event.target == alertModalFoodName1) {
-        alertModalFoodName1.style.display = "none";
-    }
-
-    if (event.target == alertModalFoodName2) {
-        alertModalFoodName2.style.display = "none";
-    }
+function getFoodInfoMinMax(foodName, minKCAL, maxKCAL) {
+    var app_URL = "https://api.edamam.com/api/food-database/v2/parser?app_id=" + app_ID + "&app_key=" + app_Key1 + "&ingr=" + foodName + "&calories=" + minKCAL + "-" + maxKCAL;
+    
+    fetch (app_URL)
+        .then (function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data);
+                    displayFoodInfo(data);
+                }); 
+            }
+            else {
+                alertModalFoodName1.style.display = "block";
+            }
+        })
+        .catch (function (error) {
+            alertModalFoodName2.style.display = "block";
+        });
+    
+    localStorage.removeItem("name");
+    localStorage.removeItem("minKCAL");
+    localStorage.removeItem("maxKCAL");
 }
 
 function displayFoodInfo(data) {
@@ -80,5 +124,72 @@ function displayFoodInfo(data) {
     }
 }
 
+function displayRecipeInfo(data) {
+    for (i = 0; i < data.meals.length; i++) {
+        var name = data.meals[i].strMeal;
+        var img_URL = data.meals[i].strMealThumb;
+        var instructions = data.meals[i].strInstructions;
+        
+        var cardEl = document.createElement("card");
+        var cardTitle = document.createElement("h2");
+        var cardContent1 = document.createElement("h3");
+        var imgEl = document.createElement("img");
+        imgEl.setAttribute("src", img_URL);
 
+        cardTitle.textContent = name;
+        cardContent1.textContent = instructions;
+
+        resultsEl.appendChild(cardEl);
+        cardEl.appendChild(imgEl);
+        cardEl.appendChild(cardTitle);
+        cardEl.appendChild(cardContent1);
+
+        //(for (var j = 1; j < 20; j++) {
+            //var ingredientStr = "strIngredient" + j;
+            //var measurementStr = "strMeasurement" + j;
+            
+            //var ingredients = data.meals[i]
+            //var measurements = data.meals[i].measurementStr;
+            
+            //var cardContent2 = document.createElement("h3");
+            //cardContent2.textContent = "Ingredients: " + ingredients + "     " + measurements; 
+            
+            //cardEl.appendChild(cardContent2);
+        //}
+    }
+}
+
+alertSpan1.onclick = function() {
+    alertModal1.style.display = "none";
+}
+
+alertSpan2.onclick = function() {
+    alertModal2.style.display = "none";
+}
+
+alertSpanFoodName1.onclick = function() {
+    alertModalFoodName1.style.display = "none";
+}
+
+alertSpanFoodName2.onclick = function() {
+    alertModalFoodName2.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == alertModal1) {
+        alertModal1.style.display = "none";
+    }
+
+    if (event.target == alertModal2) {
+        alertModal2.style.display = "none";
+    }
+
+    if (event.target == alertModalFoodName1) {
+        alertModalFoodName1.style.display = "none";
+    }
+
+    if (event.target == alertModalFoodName2) {
+        alertModalFoodName2.style.display = "none";
+    }
+}
 window.addEventListener("load", getFoodName);
