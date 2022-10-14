@@ -144,7 +144,7 @@ function displayRecipeInfo(data) {
         var img_URL = data.meals[i].strMealThumb;
         var instructions = data.meals[i].strInstructions;
         
-        var cardEl = document.createElement("card");
+        var cardEl = document.createElement("div");
         var cardTitle = document.createElement("h2");
         var cardContent1 = document.createElement("h3");
         var imgEl = document.createElement("img");
@@ -171,6 +171,13 @@ function displayRecipeInfo(data) {
             //cardEl.appendChild(cardContent2);
         //}
     }
+    var saveDiv = document.createElement("div");
+    var saveBtn = document.createElement("button");
+    saveBtn.setAttribute("type", "submit");
+    saveBtn.textContent = "Save";
+    
+    saveDiv.appendChild(saveBtn);
+    resultsEl.appendChild(saveDiv);
 }
 
 function saveFoodInfo(event) {
@@ -254,4 +261,5 @@ window.onclick = function(event) {
 }
 
 window.addEventListener("load", getFoodName);
+window.addEventListener("load", displaySavedFood);
 resultsForm.addEventListener("submit", saveFoodInfo);
