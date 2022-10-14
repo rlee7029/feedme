@@ -15,6 +15,52 @@
 <body>
     <div class="results">
         <h2 class="text-center">Results</h2>
+    <div id="resultsBody">
+        <h3>Results:</h3>
+        <form id="resultsForm">
+            <fieldset id="resultsField"> 
+            </fieldset>   
+        </form>
     </div>
+
+    <div id="savedBody">
+        <h3>Saved Recipe and Ingredients: </h3>
+        <div id="savedContainer">
+        </div>
+    </div>
+
+    <div>
+        <div class="alerts">
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Please enter a valid food name in the search bar!</p>
+                </div>
+            </div>
+            
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Request Error</p>
+                </div>
+            </div>
+            
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Cannot connect to Edamam. Please try again.</p>
+                </div>
+            </div>
+
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Please enter a valid recipe name in the search bar!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/JS/results.js"></script>
 </body>
 </html>
