@@ -31,10 +31,9 @@
   text-decoration: none;
   cursor: pointer;
 }
- 
-#body {
+ .header{
   background-image: url(./istockphoto-636845328-612x612.jpeg);
-}
+ }
 
 .searchText {
   font-family: Silkscreen-Bold;
