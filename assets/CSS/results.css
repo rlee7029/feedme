@@ -2,12 +2,27 @@
     background-color: rgb(114, 222, 114);
 }
 
-.results{
+#resultsBody {
+  background-color: rgba (243,243,243,0.2);
+  box-shadow: 0 0 03px black;
+  backdrop-filter: blur(15px);
+  border: 5px solid white;
+  
+  }
+  .results{
     margin-top: 150px;
     text-decoration: underline;
-
+    background-image: url(./istockphoto-636845328-612x612.jpeg);
+    text-align: center;
+    background-size: 280px;
+    color: rgb(0, 0, 0); 
+    padding: 80px 80px;
+    border: 3px black;
+    
+    
+    
     ;
-}
+  }
 
 .modal {
     display: none;
