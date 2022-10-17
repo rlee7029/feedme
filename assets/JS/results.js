@@ -148,7 +148,7 @@ function displayRecipeInfo(data) {
         var img_URL = data.meals[i].strMealThumb;
         var instructions = data.meals[i].strInstructions;
         
-        var cardEl = document.createElement("div");
+        var cardEl = document.createElement("card");
         var cardTitle = document.createElement("h2");
         var checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
@@ -203,16 +203,22 @@ function saveFoodInfo(event) {
     for (i = 0; i < checkBox.length; i++) {
         if (checkBox[i].checked == true) {
             var foodInfo = checkBox[i].value;
-            
+
             var infoArr = foodInfo.split("+");
             
-            var name = infoArr[0];
-            var calories = infoArr[1];
-            var fat = infoArr[2];
-
-            localStorage.setItem("name" + i, name);
-            localStorage.setItem("calories" + i, calories);
-            localStorage.setItem("fat" + i, fat);
+            if (savedEl.h2) {
+                for (j = 0; j < savedEl.h2.length; j++) {
+                    if (savedEl.h2[j].textContent == infoArr[0]) {
+                        return;
+                    }
+                    else {
+                        localStorage.setItem("name" + i, JSON.stringify(infoArr));
+                    }
+                }            
+            }
+            else {
+                localStorage.setItem("name" + i, JSON.stringify(infoArr));
+            }
         }       
     }
 
@@ -228,19 +234,20 @@ function saveFoodInfo(event) {
 }
 
 function displaySavedFood() {
+    savedEl.textContent = " ";
+    
     for (i = 0; i < 30; i++) {
         if (localStorage.getItem("name" + i)) {
-            var name = localStorage.getItem("name" + i);
-            var calories = localStorage.getItem("calories" + i);
-            var fat = localStorage.getItem("fat" + i);
+            var infoArr = JSON.parse(localStorage.getItem("name" + i));
 
             var cardContainer = document.createElement("div");
             var cardTitle = document.createElement("h2");
-            cardTitle.textContent = name;
             var cardContent1 = document.createElement("h3");
-            cardContent1.textContent = calories + " Kcal";
             var cardContent2 = document.createElement("h3");
-            cardContent2.textContent = fat + " g";
+
+            cardTitle.textContent = infoArr[0];
+            cardContent1.textContent = infoArr[1] + " Kcal";
+            cardContent2.textContent = infoArr[2] + " g";
 
             savedEl.appendChild(cardContainer);
             cardContainer.appendChild(cardTitle);
