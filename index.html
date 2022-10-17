@@ -13,18 +13,19 @@
 </head>
 
 <header class="header">
-    <h1 class="text-center">Feedme</h1>
+    <h1 class="text-center searchText">Feedme</h1>
+</header>
 
-<body>
+<body id="body">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
         </div>
         <div>
-            <h2 class="text-center">Search Recipes by Name</h2>
+            <h2 class="text-center searchText">Search Recipes by Name</h2>
             <form id="form2">
                 <div class="grid-x grid-padding-x">
                     <div class="large-12 cell">
-                      <h3 for="searchRecipe">Search by Recipe Name:</h3>
+                      <h3 class="searchText" for="searchRecipe">Recipe Name:</h3>
                       <input type="text" placeholder="Search here" id="searchRecipe">
                     </div>
                 <button type="submit" id="searchBtn2"  class="button large success expanded" >Search</button>
@@ -32,21 +33,21 @@
         </div>
 
     <div class='boxbar'>
-        <h2 class="text-center">Search Recipes by Ingredients</h2>
+        <h2 class="text-center searchText">Search Recipes by Ingredients</h2>
         <form id="form1">
     
               <div class="grid-x grid-padding-x">
                 <div class="large-4 medium-4 cell">
-                  <h3 for="searchIngredient">Search by Ingredient:</h3>
+                  <h3 class="searchText" for="searchIngredient">Ingredient Name:</h3>
               <input type="text" placeholder="Search here" id="searchIngredient">
                 </div>
                 <div class="large-4 medium-4 cell">
-                  <h3 for="minKCAL1">Minimum Calories:</h3>
+                  <h3 class="searchText" for="minKCAL1">Minimum Calories:</h3>
               <input type="text" placeholder="Minimum" id="minKCAL1" name="minKCAL1">
               
                 </div>
                 <div class="large-4 medium-4 cell">
-                  <h3 for="maxKCAL1">Maximum Calories:</h3>
+                  <h3 class="searchText" for="maxKCAL1">Maximum Calories:</h3>
               <input type="text" placeholder="Maximum" id="maxKCAL1" name="maxKCAL1">
             <button type="submit" id="searchBtn1" class="button large success expanded">Search</button>
         </form>   
@@ -85,10 +86,7 @@
         </div>
     </div>
    
-    
-
-    <script src="js/vendor/jquery.js"></script>
-       
+    <script src="js/vendor/jquery.js"></script>    
     <script src="./assets/JS/homepage.js"></script>
     <!-- <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
