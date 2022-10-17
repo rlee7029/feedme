@@ -11,6 +11,7 @@ var alertSpanFoodName2 = document.getElementsByClassName("close")[2];
 var resultsEl = document.getElementById("resultsField");
 var resultsForm = document.getElementById("resultsForm");
 var savedEl = document.getElementById("savedContainer");
+var savedForm = document.getElementById("savedForm");
 
 function getFoodName() {
     var foodName = localStorage.getItem("name");
@@ -131,14 +132,11 @@ function displayFoodInfo(data) {
     }
     var saveDiv = document.createElement("div");
     var saveBtn = document.createElement("button");
-    var deleteBtn = document.createElement("button");
-    saveBtn.setAttribute("type", "submit");
-    saveBtn.textContent = "Save";
-    deleteBtn.setAttribute("type", "submit");
-    deleteBtn.textContent = "Delete";
     
+    saveBtn.setAttribute("type", "submit");
+    saveBtn.textContent = "Save Selected";
+   
     saveDiv.appendChild(saveBtn);
-    saveDiv.appendChild(deleteBtn);
     resultsEl.appendChild(saveDiv);
 }
 
@@ -183,15 +181,11 @@ function displayRecipeInfo(data) {
     }
     var saveDiv = document.createElement("div");
     var saveBtn = document.createElement("button");
-    var deleteBtn = document.createElement("button");
 
     saveBtn.setAttribute("type", "submit");
-    saveBtn.textContent = "Save";
-    deleteBtn.setAttribute("type", "submit");
-    deleteBtn.textContent = "Delete";
+    saveBtn.textContent = "Save Selected";
     
     saveDiv.appendChild(saveBtn);
-    saveDiv.appendChild(deleteBtn);
     resultsEl.appendChild(saveDiv);
 }
 
@@ -242,6 +236,11 @@ function displaySavedFood() {
 
             var cardContainer = document.createElement("div");
             var cardTitle = document.createElement("h2");
+            var checkBox = document.createElement("input");
+            checkBox.setAttribute("type", "checkbox");
+            checkBox.setAttribute("name", "name");
+            checkBox.setAttribute("value", "name" + i);
+            checkBox.classList = "savedCheckBoxIng";
             var cardContent1 = document.createElement("h3");
             var cardContent2 = document.createElement("h3");
 
@@ -251,6 +250,7 @@ function displaySavedFood() {
 
             savedEl.appendChild(cardContainer);
             cardContainer.appendChild(cardTitle);
+            cardContainer.appendChild(checkBox);
             cardContainer.appendChild(cardContent1);
             cardContainer.appendChild(cardContent2);
         }
@@ -268,6 +268,28 @@ function displaySavedFood() {
             cardContainer.appendChild(cardTitle);
         }
     }  
+    var deleteDiv = document.createElement("div");
+    var deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("type", "submit");
+    deleteBtn.textContent = "Delete Selected";
+
+    deleteDiv.appendChild(deleteBtn);
+    savedEl.appendChild(deleteDiv);
+}
+
+function deleteFoodInfo(event) {
+    event.preventDefault();
+
+    var savedCheckBoxIng = document.getElementsByClassName("savedCheckBoxIng");
+    
+    for (i = 0; i < savedCheckBoxIng.length; i++) {
+        if (savedCheckBoxIng[i].checked == true) {
+            var name = savedCheckBoxIng[i].value;
+            console.log(JSON.stringify(name));
+            localStorage.removeItem(name);
+        } 
+    }
+    displaySavedFood();
 }
 
 alertSpan1.onclick = function() {
@@ -307,3 +329,4 @@ window.onclick = function(event) {
 window.addEventListener("load", getFoodName);
 window.addEventListener("load", displaySavedFood);
 resultsForm.addEventListener("submit", saveFoodInfo);
+savedForm.addEventListener("submit", deleteFoodInfo);
