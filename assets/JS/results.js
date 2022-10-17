@@ -209,8 +209,8 @@ function displayRecipeInfo(data) {
         resultsEl.appendChild(cardEl);
         cardEl.appendChild(imgEl);
         cardEl.appendChild(cardTitle);
-        cardEl.appendChild(cardContent1);
         cardEl.appendChild(checkbox);
+        cardEl.appendChild(cardContent1);
     }
     var saveDiv = document.createElement("div");
     var saveBtn = document.createElement("button");
