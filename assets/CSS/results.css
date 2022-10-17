@@ -5,7 +5,7 @@
 #resultsBody {
   background-color: rgba (243,243,243,0.2);
   box-shadow: 0 0 03px black;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(25px);
   border: 5px solid white;
   
   }
