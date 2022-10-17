@@ -151,7 +151,7 @@ function displayRecipeInfo(data) {
         var checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
         checkbox.classList = "checkBoxRecipe";
-        checkbox.setAttribute("name", "Recipe Name");
+        checkbox.setAttribute("name", "recipeName" + i);
         checkbox.setAttribute("value", name);
         var cardContent1 = document.createElement("h3");
         var imgEl = document.createElement("img");
@@ -165,19 +165,6 @@ function displayRecipeInfo(data) {
         cardEl.appendChild(cardTitle);
         cardEl.appendChild(cardContent1);
         cardEl.appendChild(checkbox);
-
-        //(for (var j = 1; j < 20; j++) {
-            //var ingredientStr = "strIngredient" + j;
-            //var measurementStr = "strMeasurement" + j;
-            
-            //var ingredients = data.meals[i]
-            //var measurements = data.meals[i].measurementStr;
-            
-            //var cardContent2 = document.createElement("h3");
-            //cardContent2.textContent = "Ingredients: " + ingredients + "     " + measurements; 
-            
-            //cardEl.appendChild(cardContent2);
-        //}
     }
     var saveDiv = document.createElement("div");
     var saveBtn = document.createElement("button");
@@ -262,10 +249,16 @@ function displaySavedFood() {
 
             var cardContainer = document.createElement("div");
             var cardTitle = document.createElement("h2");
+            var checkBox = document.createElement("input");
+            checkBox.setAttribute("type", "checkbox");
+            checkBox.setAttribute("name", "name");
+            checkBox.setAttribute("value", "recipeName" + i);
+            checkBox.classList = "savedCheckBoxRec";
             cardTitle.textContent = name;
 
             savedEl.appendChild(cardContainer);
             cardContainer.appendChild(cardTitle);
+            cardContainer.appendChild(checkBox);
         }
     }  
     var deleteDiv = document.createElement("div");
@@ -281,6 +274,7 @@ function deleteFoodInfo(event) {
     event.preventDefault();
 
     var savedCheckBoxIng = document.getElementsByClassName("savedCheckBoxIng");
+    var savedCheckBoxRec = document.getElementsByClassName("savedCheckBoxRec");
     
     for (i = 0; i < savedCheckBoxIng.length; i++) {
         if (savedCheckBoxIng[i].checked == true) {
@@ -288,6 +282,13 @@ function deleteFoodInfo(event) {
             console.log(JSON.stringify(name));
             localStorage.removeItem(name);
         } 
+    }
+
+    for (i = 0; i < savedCheckBoxRec.length; i++) {
+        if (savedCheckBoxRec[i].checked == true) {
+            var name = savedCheckBoxRec[i].value;
+            localStorage.removeItem(name);
+        }
     }
     displaySavedFood();
 }
