@@ -12,6 +12,48 @@ var resultsEl = document.getElementById("resultsField");
 var resultsForm = document.getElementById("resultsForm");
 var savedEl = document.getElementById("savedContainer");
 var savedForm = document.getElementById("savedForm");
+var userInputEL1 = document.getElementById("searchIngredient");
+var userInputEL2 = document.getElementById("searchRecipe");
+var minKCALEl1 = document.getElementById("minKCAL1");
+var maxKCALEl1 = document.getElementById("maxKCAL1");
+var userFormEl1 = document.getElementById("form1");
+var userFormEl2 = document.getElementById("form2");
+var searchBtn1 = document.getElementById("searchBtn1");
+var searchBtn2 = document.getElementById("searchBtn2");
+var app_ID = "a4759254";
+var app_Key1 = "8b51efe3abe8a26556f2211b458b449e";
+
+function formSubmitHandler1(event) {
+    event.preventDefault();
+    var foodName = userInputEL1.value;
+    var minKCAL = minKCALEl1.value;
+    var maxKCAL = maxKCALEl1.value;
+   
+    if (!foodName) {
+       alertModal1.style.display = "block";
+       return;
+    }
+    
+    if (minKCAL && maxKCAL) {
+        getFoodInfoMinMax(foodName,minKCAL,maxKCAL);
+    }
+    else {
+        getFoodInfo(foodName);
+    }
+}
+
+function formSubmitHandler2(event) {
+    event.preventDefault();
+    var recipeName = userInputEL2.value;
+
+    if (!recipeName) {
+        alertModal2.style.display = "block";
+        return;
+    }
+    else {
+        getRecipeInfo(recipeName);
+    }
+}
 
 function getFoodName() {
     var foodName = localStorage.getItem("name");
@@ -102,6 +144,8 @@ function getFoodInfoMinMax(foodName, minKCAL, maxKCAL) {
 }
 
 function displayFoodInfo(data) {
+    resultsEl.textContent = " ";
+    
     for (i = 0; i < data.hints.length; i++) {
         var name = data.hints[i].food.label;
         var calories = data.hints[i].food.nutrients.ENERC_KCAL;
@@ -141,6 +185,8 @@ function displayFoodInfo(data) {
 }
 
 function displayRecipeInfo(data) {
+    resultsEl.textContent = " ";
+    
     for (i = 0; i < data.meals.length; i++) {
         var name = data.meals[i].strMeal;
         var img_URL = data.meals[i].strMealThumb;
@@ -331,3 +377,5 @@ window.addEventListener("load", getFoodName);
 window.addEventListener("load", displaySavedFood);
 resultsForm.addEventListener("submit", saveFoodInfo);
 savedForm.addEventListener("submit", deleteFoodInfo);
+userFormEl1.addEventListener("submit", formSubmitHandler1);
+userFormEl2.addEventListener("submit", formSubmitHandler2);
