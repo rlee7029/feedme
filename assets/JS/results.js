@@ -178,6 +178,7 @@ function displayFoodInfo(data) {
     var saveBtn = document.createElement("button");
     
     saveBtn.setAttribute("type", "submit");
+    saveBtn.classList = "button large success";
     saveBtn.textContent = "Save Selected";
    
     saveDiv.appendChild(saveBtn);
@@ -216,6 +217,7 @@ function displayRecipeInfo(data) {
     var saveBtn = document.createElement("button");
 
     saveBtn.setAttribute("type", "submit");
+    saveBtn.classList = "button large success";
     saveBtn.textContent = "Save Selected";
     
     saveDiv.appendChild(saveBtn);
@@ -310,6 +312,7 @@ function displaySavedFood() {
     var deleteDiv = document.createElement("div");
     var deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("type", "submit");
+    deleteBtn.classList = "button large success";
     deleteBtn.textContent = "Delete Selected";
 
     deleteDiv.appendChild(deleteBtn);
